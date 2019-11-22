@@ -5,12 +5,12 @@
 	</head>
 	<style type="text/css">
 		.hamburger {
-			--hamburger-height: 2rem;
+			--hamburger-height: 4rem;
 			--hamburger-horizontal-margin: 0.2rem;
-			--hamburger-stroke-width: 0.2rem;
+			--hamburger-stroke-width: 0.5rem;
 			--hamburger-vertical-margin: 0.3rem;
-			--hamburger-width: 2rem;
-			--hamburger-transition: 0.4s;
+			--hamburger-width: 4rem;
+			--hamburger-transition: 1s;
 			display: inline-block;
 			height: var(--hamburger-height);
 			position: relative;
@@ -24,6 +24,7 @@
 			top: calc((var(--hamburger-height) - var(--hamburger-stroke-width)) / 2);
 			transition: var(--hamburger-transition);
 			width: calc(var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2);
+			transform-origin: center center;
 		}
 		.hamburger-menu div:nth-child(1) {
 			top: var(--hamburger-vertical-margin);
@@ -31,43 +32,81 @@
 		.hamburger-menu div:nth-child(3) {
 			top: calc(var(--hamburger-height) - var(--hamburger-vertical-margin) - var(--hamburger-stroke-width));
 		}
-		.hamburger-back div:nth-child(1),
-		.hamburger-back div:nth-child(3) {
+
+		.hamburger-arrow-left div:nth-child(1),
+		.hamburger-arrow-left div:nth-child(3) {
 			width: calc((var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2) / 2);
 		}
-		.hamburger-back div:nth-child(1) {
+		.hamburger-arrow-left div:nth-child(1) {
 			transform-origin: top left;
 			transform: rotate(-45deg);
 		}
-		.hamburger-back div:nth-child(3) {
+		.hamburger-arrow-left div:nth-child(3) {
 			transform-origin: bottom left;
 			transform: rotate(45deg);
 		}
-		.hamburger-cross div:nth-child(1),
-		.hamburger-cross div:nth-child(3) {
-			transform-origin: center center;
+
+		.hamburger-arrow-right div:nth-child(1),
+		.hamburger-arrow-right div:nth-child(3) {
+			width: calc((var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2) / 2);
+			left: calc(var(--hamburger-width) / 2);
+		}
+		.hamburger-arrow-right div:nth-child(1) {
+			transform-origin: top right;
+			transform: rotate(45deg);
+		}
+		.hamburger-arrow-right div:nth-child(3) {
+			transform-origin: bottom right;
 			transform: rotate(-45deg);
 		}
-		.hamburger-cross div:nth-child(2) {
+
+		.hamburger-cross div:nth-child(1),
+		.hamburger-cross div:nth-child(3) {
+			transform: rotate(-45deg);
+		}
+		.hamburger-cross div:nth-child(2),
+		.hamburger-plus div:nth-child(2) {
 			left: calc(var(--hamburger-width) / 2);
 			width: 0;
 		}
 		.hamburger-cross div:nth-child(3) {
 			transform: rotate(45deg);
 		}
+
+		.hamburger-plus div:nth-child(2) {
+			left: calc(var(--hamburger-width) / 2);
+			width: 0;
+		}
+		.hamburger-plus div:nth-child(3) {
+			transform: rotate(90deg);
+		}
+
+		.hamburger-minus div:nth-child(1),
+		.hamburger-minus div:nth-child(3) {
+			left: calc(var(--hamburger-width) / 2);
+			width: 0;
+		}
+
 	</style>
 	<script type="text/javascript">
 		function nextIcon() {
 			const elm = document.getElementById('hamburger-div');
-			if ([...elm.classList.entries()].find(x => x[1] === 'hamburger-cross')) {
-				elm.classList.remove('hamburger-cross');
-				elm.classList.add('hamburger-back');
-			} else if ([...elm.classList.entries()].find(x => x[1] === 'hamburger-back')) {
-				elm.classList.remove('hamburger-back');
-				elm.classList.add('hamburger-menu');
-			} else {
-				elm.classList.remove('hamburger-menu');
-				elm.classList.add('hamburger-cross');
+			const icons = [
+				'hamburger-menu',
+				'hamburger-arrow-left',
+				'hamburger-arrow-right',
+				'hamburger-cross',
+				'hamburger-plus',
+				'hamburger-minus'
+			];
+			for (var i = 0; i < icons.length; i++) {
+				const current = icons[i];
+				const next = icons[(i + 1) % icons.length];
+				if ([...elm.classList.entries()].find(x => x[1] === current)) {
+					elm.classList.remove(current);
+					elm.classList.add(next);
+					break;
+				}
 			}
 		};
 	</script>
