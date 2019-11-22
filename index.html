@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pure CSS hamburger</title>
+	</head>
+	<style type="text/css">
+		.hamburger {
+			--hamburger-height: 2rem;
+			--hamburger-horizontal-margin: 0.2rem;
+			--hamburger-stroke-width: 0.2rem;
+			--hamburger-vertical-margin: 0.3rem;
+			--hamburger-width: 2rem;
+			--hamburger-transition: 0.4s;
+			display: inline-block;
+			height: var(--hamburger-height);
+			position: relative;
+			width: var(--hamburger-width);
+		}
+		.hamburger div {
+			background-color: black;
+			height: var(--hamburger-stroke-width);
+			left: var(--hamburger-horizontal-margin);
+			position: absolute;
+			top: calc((var(--hamburger-height) - var(--hamburger-stroke-width)) / 2);
+			transition: var(--hamburger-transition);
+			width: calc(var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2);
+		}
+		.hamburger-menu div:nth-child(1) {
+			top: var(--hamburger-vertical-margin);
+		}
+		.hamburger-menu div:nth-child(3) {
+			top: calc(var(--hamburger-height) - var(--hamburger-vertical-margin) - var(--hamburger-stroke-width));
+		}
+		.hamburger-back div:nth-child(1),
+		.hamburger-back div:nth-child(3) {
+			width: calc((var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2) / 2);
+		}
+		.hamburger-back div:nth-child(1) {
+			transform-origin: top left;
+			transform: rotate(-45deg);
+		}
+		.hamburger-back div:nth-child(3) {
+			transform-origin: bottom left;
+			transform: rotate(45deg);
+		}
+		.hamburger-cross div:nth-child(1),
+		.hamburger-cross div:nth-child(3) {
+			transform-origin: center center;
+			transform: rotate(-45deg);
+		}
+		.hamburger-cross div:nth-child(2) {
+			left: calc(var(--hamburger-width) / 2);
+			width: 0;
+		}
+		.hamburger-cross div:nth-child(3) {
+			transform: rotate(45deg);
+		}
+	</style>
+	<script type="text/javascript">
+		function nextIcon() {
+			const elm = document.getElementById('hamburger-div');
+			if ([...elm.classList.entries()].find(x => x[1] === 'hamburger-cross')) {
+				elm.classList.remove('hamburger-cross');
+				elm.classList.add('hamburger-back');
+			} else if ([...elm.classList.entries()].find(x => x[1] === 'hamburger-back')) {
+				elm.classList.remove('hamburger-back');
+				elm.classList.add('hamburger-menu');
+			} else {
+				elm.classList.remove('hamburger-menu');
+				elm.classList.add('hamburger-cross');
+			}
+		};
+	</script>
+	<body>
+		<div class="hamburger hamburger-menu" id="hamburger-div" onclick="nextIcon();">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+</html>
