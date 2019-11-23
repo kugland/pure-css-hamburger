@@ -1,0 +1,87 @@
+.hamburger-menu,
+.hamburger-arrow-left,
+.hamburger-arrow-right,
+.hamburger-cross,
+.hamburger-plus,
+.hamburger-minus {
+	--hamburger-height: 4rem;
+	--hamburger-horizontal-margin: 0.2rem;
+	--hamburger-stroke-width: 0.75rem;
+	--hamburger-vertical-margin: 0.3rem;
+	--hamburger-width: 4rem;
+	--hamburger-transition: 1s;
+	display: inline-block;
+	height: var(--hamburger-height);
+	position: relative;
+	width: var(--hamburger-width);
+}
+.hamburger-menu div,
+.hamburger-arrow-left div,
+.hamburger-arrow-right div,
+.hamburger-cross div,
+.hamburger-plus div,
+.hamburger-minus div {
+	background-color: black;
+	height: var(--hamburger-stroke-width);
+	left: var(--hamburger-horizontal-margin);
+	position: absolute;
+	top: calc((var(--hamburger-height) - var(--hamburger-stroke-width)) / 2);
+	transition: var(--hamburger-transition);
+	width: calc(var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2);
+	transform-origin: center center;
+}
+
+.hamburger-menu div:nth-child(1) {
+	top: var(--hamburger-vertical-margin);
+}
+.hamburger-menu div:nth-child(3) {
+	top: calc(var(--hamburger-height) - var(--hamburger-vertical-margin) - var(--hamburger-stroke-width));
+}
+
+.hamburger-arrow-left div:nth-child(1),
+.hamburger-arrow-left div:nth-child(3) {
+	width: calc((var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2) / 2);
+}
+.hamburger-arrow-left div:nth-child(1) {
+	transform-origin: top left;
+	transform: rotate(-45deg);
+}
+.hamburger-arrow-left div:nth-child(3) {
+	transform-origin: bottom left;
+	transform: rotate(45deg);
+}
+
+.hamburger-arrow-right div:nth-child(1),
+.hamburger-arrow-right div:nth-child(3) {
+	width: calc((var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2) / 2);
+	left: calc(var(--hamburger-width) / 2);
+}
+.hamburger-arrow-right div:nth-child(1) {
+	transform-origin: top right;
+	transform: rotate(45deg);
+}
+.hamburger-arrow-right div:nth-child(3) {
+	transform-origin: bottom right;
+	transform: rotate(-45deg);
+}
+
+.hamburger-cross div:nth-child(1),
+.hamburger-cross div:nth-child(3) {
+	transform: rotate(-45deg);
+}
+.hamburger-cross div:nth-child(2),
+.hamburger-plus div:nth-child(2) {
+	left: calc(var(--hamburger-width) / 2);
+	width: 0;
+}
+.hamburger-cross div:nth-child(3) {
+	transform: rotate(45deg);
+}
+
+.hamburger-plus div:nth-child(2) {
+	left: calc(var(--hamburger-width) / 2);
+	width: 0;
+}
+.hamburger-plus div:nth-child(3) {
+	transform: rotate(90deg);
+}
