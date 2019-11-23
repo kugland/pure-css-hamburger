@@ -3,29 +3,29 @@
 	<head>
 		<title>Pure CSS hamburger</title>
 		<link rel="stylesheet" type="text/css" href="pure-css-hamburger.css" />
-	</head>
-	<script type="text/javascript">
-		function nextIcon() {
-			const elm = document.getElementById('hamburger-div');
-			const icons = [
-				'hamburger-menu',
-				'hamburger-arrow-left',
-				'hamburger-arrow-right',
-				'hamburger-cross',
-				'hamburger-plus',
-				'hamburger-minus'
-			];
-			for (var i = 0; i < icons.length; i++) {
-				const current = icons[i];
-				const next = icons[(i + 1) % icons.length];
-				if ([...elm.classList.entries()].find(x => x[1] === current)) {
-					elm.classList.remove(current);
-					elm.classList.add(next);
-					break;
+		<script type="text/javascript">
+			function nextIcon() {
+				const elm = document.getElementById('hamburger-div');
+				const icons = [
+					'hamburger-menu',
+					'hamburger-arrow-left',
+					'hamburger-arrow-right',
+					'hamburger-cross',
+					'hamburger-plus',
+					'hamburger-minus'
+				];
+				for (var i = 0; i < icons.length; i++) {
+					const current = icons[i];
+					const next = icons[(i + 1) % icons.length];
+					if ([...elm.classList.entries()].find(x => x[1] === current)) {
+						elm.classList.remove(current);
+						elm.classList.add(next);
+						break;
+					}
 				}
-			}
-		};
-	</script>
+			};
+		</script>
+	</head>
 	<body>
 		<div class="hamburger-menu" id="hamburger-div" onclick="nextIcon();">
 			<div></div>
