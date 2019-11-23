@@ -4,7 +4,12 @@
 		<title>Pure CSS hamburger</title>
 	</head>
 	<style type="text/css">
-		.hamburger {
+		.hamburger-menu,
+		.hamburger-arrow-left,
+		.hamburger-arrow-right,
+		.hamburger-cross,
+		.hamburger-plus,
+		.hamburger-minus {
 			--hamburger-height: 4rem;
 			--hamburger-horizontal-margin: 0.2rem;
 			--hamburger-stroke-width: 0.5rem;
@@ -16,7 +21,12 @@
 			position: relative;
 			width: var(--hamburger-width);
 		}
-		.hamburger div {
+		.hamburger-menu div,
+		.hamburger-arrow-left div,
+		.hamburger-arrow-right div,
+		.hamburger-cross div,
+		.hamburger-plus div,
+		.hamburger-minus div {
 			background-color: black;
 			height: var(--hamburger-stroke-width);
 			left: var(--hamburger-horizontal-margin);
@@ -26,6 +36,7 @@
 			width: calc(var(--hamburger-width) - var(--hamburger-horizontal-margin) * 2);
 			transform-origin: center center;
 		}
+
 		.hamburger-menu div:nth-child(1) {
 			top: var(--hamburger-vertical-margin);
 		}
@@ -81,12 +92,6 @@
 			transform: rotate(90deg);
 		}
 
-		.hamburger-minus div:nth-child(1),
-		.hamburger-minus div:nth-child(3) {
-			left: calc(var(--hamburger-width) / 2);
-			width: 0;
-		}
-
 	</style>
 	<script type="text/javascript">
 		function nextIcon() {
@@ -111,7 +116,7 @@
 		};
 	</script>
 	<body>
-		<div class="hamburger hamburger-menu" id="hamburger-div" onclick="nextIcon();">
+		<div class="hamburger-menu" id="hamburger-div" onclick="nextIcon();">
 			<div></div>
 			<div></div>
 			<div></div>
